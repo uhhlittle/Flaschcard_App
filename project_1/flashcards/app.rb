@@ -6,45 +6,88 @@ require_relative 'db/connection'
 require_relative 'lib/category'
 require_relative 'lib/flashcard'
 
+
+
 def get_category
   puts "Which category?"
   puts Category.all
-  category_name = gets.chomp
-  return Category.find_by(name: category_name)
-
-
+  category_id = gets.chomp
+  return Category.find_by(id: category_id)
 end
 
-#define play method
-#return remaining (is_answered = false) category.id.flashcards sequentially.
+def get_card(category)
+  puts "Select card by ID."
+  puts category.flashcards
+  current_card = gets.chomp.to_i
+  return category.flashcards.find_by(id: current_card)
+end
 
-#method to assess correctness ie == current_flashcard.answer
-#then is_answered = true
-#else puts "Sorry, try again."
+def play
+  play_category = get_category
+  category_cards = play_category.flashcards.all
+  category_cards.each do |card|
+    puts "Translate this word: #{card.question}"
+    user_answer = gets.chomp
+    if user_answer == card.answer
+      card.is_answered = true
+      card.score = (card.score.to_i + 1)
+      card.save
+      puts "Correcto!"
+    else
+      card.is_answered = false
+      card.save
+      puts "Lo Siento. Please try again."
+    end
+  end
+end
 
-def get_card_input
+def add_new_card
   card_attr = {}
+  puts "Select Category by ID"
   puts Category.all
-  puts "Which category?"
-  card_attr[:category_id] = gets.chomp
-  puts "What is the question?"
+  current_category = gets.chomp
+  card_attr[:category_id] = current_category
+  puts "What is the vocabulary word?"
   card_attr[:question] = gets.chomp
-  puts "What is the answer?"
+  puts "What is the translation?"
   card_attr[:answer] = gets.chomp
-
   card_attr[:is_answered] = false
   return card_attr
 end
 
+
+
+def score()
+  score = Flashcard.where(is_answered: true).count
+  return "Your total score is #{score}"
+
+end
+
+# def score()
+  # category_cards = []
+  # Category.all.each do |current_category|
+  #   category_cards << current_category.flashcards
+  # end
+#   all_correct_cards = []
+#     category_cards.each do |current_card|
+#       if current_card.is_answered == true
+#         all_correct_flashcards << current_card
+#       end
+#       puts "Category:#{Category.name} Score:#{all_correct_flashcards.count}"
+#     end
+#
+# end
+
 def menu
   puts "Choose an option:
   1. Let's Translate!
-  2. List all Flashcards.
-  3. Edit an exisiting card.
-  4. Add a new card.
-  5. Delete a card.
-  6. View Score.
-  7. Quit"
+  2. List all categories.
+  3. List all flashcards.
+  4. Add a new flashcard.
+  5. Edit an exisiting flashcard.
+  6. Delete a flashcard.
+  7. View Score.
+  8. Quit"
   return gets.chomp
 end
 
@@ -52,47 +95,40 @@ loop do
 
   choice = menu
   case choice
-
   when "1"
-    puts Category.all
+    game_play = play
 
   when "2"
-    Fridge.create(get_fridge_input)
+    puts Category.all
+
   when "3"
-    fridge = get_fridge
-    fridge.destroy
+    puts Flashcard.all
   when "4"
-    fridge = get_fridge
-    puts fridge.foods
+    Flashcard.create(add_new_card)
+
   when "5"
-    fridge = get_fridge
-    new_food = Food.create(get_food_input)
-    new_food.fridge = fridge
-    new_food.save
+    current_category = get_category
+    current_card = get_card(current_category)
+    puts "What is the vocabulary word?"
+    new_question = gets.chomp
+    current_card.question = new_question
+    puts "What is the translation?"
+    new_answer = gets.chomp
+    current_card.answer = new_answer
+    current_card.save
+
   when "6"
-    fridge = get_fridge
-    food = get_food(fridge)
-    food.destroy
+    current_category = get_category
+    current_card = get_card(current_category)
+    current_card.destroy
+
   when "7"
-    fridge = get_fridge
-    puts fridge.drinks
+current_score = score
+
+puts current_score
+
   when "8"
-    fridge = get_fridge
-    new_drink = Drink.create(get_drink_input)
-    new_drink.fridge = fridge
-    new_drink.save
-  when "9"
-    fridge = get_fridge
-    drink = get_drink(fridge)
-    puts "What is the new size?"
-    new_size = gets.chomp
-    drink.size = new_size
-    drink.save
-  when "10"
-    fridge = get_fridge
-    drink = get_drink(fridge)
-    drink.destroy
-  when "11"
     break
+
   end
 end
