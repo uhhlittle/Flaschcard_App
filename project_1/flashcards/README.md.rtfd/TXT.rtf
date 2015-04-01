@@ -1,0 +1,125 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1344\cocoasubrtf720
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww12600\viewh7800\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\b\fs24 \cf0 User Stories:
+\b0 \
+\
+As a user I want to play flashcard game by selecting a main menu option.\
+\
+As a user I want to return to the main menu from the game at any point. \
+\
+As a user I want to access a full list of flashcards by selecting a main menu option. \
+\
+As a user I want to view my score by selecting a main menu option. \
+\
+As a user I want to exit program and save my data by selecting main menu option. \
+\
+As a user I want to edit an individual flashcard by choosing from a list of flashcards. \
+\
+As a user I want to add a new flashcard by choosing a menu option and enttering a category/question/and answer. \
+\
+As a user I want to delete an individual flashcard by choosing from a list of flashcards. \
+\
+
+\b Pseudocode:\
+\
+\pard\pardeftab720\sl320
+
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+Program should:\'a0\
+\
+List all flashcards.\'a0\
+(method: listing flashcards)\
+\
+Create Flashcard\
+(method: add_flashcard)\
+\
+Edit Flashcard\
+(update method)\
+\
+Delete Flashcard\'a0\
+(delete method)\
+\
+View score/ recent answers\
+(update method)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\b \cf0 \kerning1\expnd0\expndtw0 \
+\
+\pard\pardeftab720\sl320
+
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+FLASHCARD MENU:\'a0\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl320
+\ls1\ilvl0\cf0 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Play game.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+List/Edit/Delete flashcards.\'a0\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+View Score/ Recent Answers\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Exit & Save Game.\'a0\
+\pard\pardeftab720\sl320
+\cf0 \expnd0\expndtw0\kerning0
+\
+	Case Statements\
+		If User Selects 1\'a0\
+			List Category\
+			Prompt to select category.\'a0\
+			Gets User Input\
+				Category Questions\'a0\
+				Gets Chomp\
+				If Answers Match Gets Chomp Mark Correct.\'a0\
+					Change Question Status. Correct = Answered\
+				Else\
+				Return False \'93Try Again\'94 Question remains in deck.\
+			Show Score. Next Card or Main Menu?\
+				\
+				\
+				\
+		If User Selects 2\'a0\
+			List all flashcards.\'a0\
+				\expnd0\expndtw0\kerning0
+\ul Card Menu\expnd0\expndtw0\kerning0
+\ulnone \
+				1\'a0Create Flashcard\
+				2\'a0Edit Flashcard\
+				3\'a0Delete Flashcard\
+				4\'a0Main Menu\
+					If User Input = 1\
+						Create Method\
+					If User_input = 2\
+						Update Method\
+					If User_input = 3	\
+						Delete Method\
+					if \'a04\'a0\
+						Loop Back.\'a0\
+		If User Selects 3\
+			Count method on answered correctly questions.\'a0\
+			Display Questions.\'a0\
+	\
+		If User Selects 4\'a0\
+			\'a0Exit Program\
+\
+
+\b ERD: \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f0\b0 \cf0 \kerning1\expnd0\expndtw0 {{\NeXTGraphic Pasted Graphic 2.tiff \width6660 \height6200
+}¬}
+\f1 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl320
+\cf0 				\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0 \cf0 \kerning1\expnd0\expndtw0 \
+\
+\
+}
