@@ -8,6 +8,8 @@ require_relative 'lib/flashcard'
 
 
 
+
+
 def get_category
   puts "Which category?"
   puts Category.all
@@ -23,9 +25,13 @@ def get_card(category)
 end
 
 def play
+  system "clear"
+  header("STUDY MODE")
   play_category = get_category
   category_cards = play_category.flashcards.all
   category_cards.each do |card|
+    system "clear"
+    header("STUDY MODE")
     puts "Translate this word: #{card.question}"
     user_answer = gets.chomp
     if user_answer == card.answer
@@ -42,7 +48,9 @@ def play
 end
 
 def add_new_card
+  system "clear"
   card_attr = {}
+  header("Add New Card")
   puts "Select Category by ID"
   puts Category.all
   current_category = gets.chomp
@@ -55,31 +63,28 @@ def add_new_card
   return card_attr
 end
 
+def header(title_text)
+  dashes = "----------------"
+  puts  " #{dashes}#{title_text}#{dashes}"
+end
 
 
 def score()
+  system "clear"
   score = Flashcard.where(is_answered: true).count
   return "Your total score is #{score}"
 
 end
 
-# def score()
-  # category_cards = []
-  # Category.all.each do |current_category|
-  #   category_cards << current_category.flashcards
-  # end
-#   all_correct_cards = []
-#     category_cards.each do |current_card|
-#       if current_card.is_answered == true
-#         all_correct_flashcards << current_card
-#       end
-#       puts "Category:#{Category.name} Score:#{all_correct_flashcards.count}"
-#     end
-#
-# end
+def end_menu_option
+  puts "Press <Enter> to continue."
+  gets.chomp
+end
 
 def menu
-  puts "Choose an option:
+  system "clear"
+  header("SPANISH TRANSLATION")
+  puts "Select an option:
   1. Let's Translate!
   2. List all categories.
   3. List all flashcards.
@@ -100,11 +105,14 @@ loop do
 
   when "2"
     puts Category.all
+    end_menu_option
 
   when "3"
     puts Flashcard.all
+    end_menu_option
   when "4"
     Flashcard.create(add_new_card)
+    end_menu_option
 
   when "5"
     current_category = get_category
@@ -116,18 +124,27 @@ loop do
     new_answer = gets.chomp
     current_card.answer = new_answer
     current_card.save
+    system "clear"
+    puts"Card Edited!"
+    end_menu_option
 
   when "6"
     current_category = get_category
     current_card = get_card(current_category)
     current_card.destroy
+    system "clear"
+    puts "Card DELETED."
+    end_menu_option
+
 
   when "7"
-current_score = score
+    current_score = score
 
-puts current_score
+    puts current_score
+    end_menu_option
 
   when "8"
+    system "clear"
     break
 
   end
