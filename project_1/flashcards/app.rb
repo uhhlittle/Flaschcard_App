@@ -6,10 +6,6 @@ require_relative 'db/connection'
 require_relative 'lib/category'
 require_relative 'lib/flashcard'
 
-
-
-
-
 def get_category
   puts "Which category?"
   puts Category.all
@@ -36,13 +32,14 @@ def play
     user_answer = gets.chomp
     if user_answer == card.answer
       card.is_answered = true
-      card.score = (card.score.to_i + 1)
       card.save
       puts "Correcto!"
+    end_menu_option
     else
       card.is_answered = false
       card.save
       puts "Lo Siento. Please try again."
+    end_menu_option
     end
   end
 end
