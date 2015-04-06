@@ -19,3 +19,4 @@ CREATE TABLE flashcards(
   category_id INTEGER
 
 );
+# keep the drop tables together, eliminate the whitespaces at lines 3,7,20. 

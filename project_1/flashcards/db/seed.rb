@@ -41,3 +41,6 @@ clothing_flashcards = clothing.flashcards.create([
   {question: "camisa", answer: "shirt", score: 0,  is_answered: false},
   {question: "lunetas", answer: "glasses", score: 0,  is_answered: false}
   ])
+
+# seems like theres a lot of repeated information score: 0 and is_answered:false seems to happen for every entry. Maybe there's a way we can automate this on creation.
+# unnecessary this space before closing ]) on lines 21, 33, 43

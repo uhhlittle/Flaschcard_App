@@ -1,10 +1,14 @@
 User Stories:
 
 As a user I want to play flashcard game by selecting a main menu option.
+# format user stories in the following
+- a user should be able to play a game
 
 As a user I want to return to the main menu from the game at any point.
+- a user can return to the main menu at any point
 
 As a user I want to access a full list of flashcards by selecting a main menu option.
+- so on and so forth ....
 
 As a user I want to view my score by selecting a main menu option.
 
@@ -12,7 +16,7 @@ As a user I want to exit program and save my data by selecting main menu option.
 
 As a user I want to edit an individual flashcard by choosing from a list of flashcards.
 
-As a user I want to add a new flashcard by choosing a menu option and entering a category/question/and answer. 
+As a user I want to add a new flashcard by choosing a menu option and entering a category/question/and answer.
 
 As a user I want to delete an individual flashcard by choosing from a list of flashcards.
 
