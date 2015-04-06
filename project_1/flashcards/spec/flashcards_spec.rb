@@ -12,4 +12,5 @@ describe Flashcard do
       expect(apple_translation.to_s).to eq("ID: 1 Q: manzana A: apple")
     end
   end
+  # same comments as category spec
 end

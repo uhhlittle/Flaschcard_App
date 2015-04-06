@@ -5,7 +5,7 @@ require 'pry'
 require_relative 'db/connection'
 require_relative 'lib/category'
 require_relative 'lib/flashcard'
-
+# how often do you find yourself prompting a user for information, and then getting user input. Do you think that logic can be abstrated into a method and reused?
 def get_category
   puts "Which category?"
   puts Category.all
@@ -18,6 +18,7 @@ def get_card(category)
   puts category.flashcards
   current_card = gets.chomp.to_i
   return category.flashcards.find_by(id: current_card)
+  # maybe this method could be defined inside the Category Class definition. That way you can call the method on a Category Object, rather than passing in a category object to a local method
 end
 
 def play
@@ -25,6 +26,7 @@ def play
   header("STUDY MODE")
   play_category = get_category
   category_cards = play_category.flashcards.all
+  # i think the all here is either redundant or it will make the program break
   category_cards.each do |card|
     system "clear"
     header("STUDY MODE")
@@ -32,6 +34,8 @@ def play
     user_answer = gets.chomp
     if user_answer == card.answer
       card.is_answered = true
+      # so I kind of saw this flaw in the schema file, but I wanted to see the UI before I made a comment
+      # The question i'm posing, can the card be reused? once its answered correctly, is it ever reset to false? How might we fix this?
       card.save
       puts "Correcto!"
     end_menu_option
@@ -146,3 +150,4 @@ loop do
 
   end
 end
+# overall looks good, start thinking about how you might refactor your code

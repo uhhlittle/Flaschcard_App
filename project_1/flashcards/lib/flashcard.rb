@@ -7,3 +7,5 @@ class Flashcard <ActiveRecord::Base
     return "ID: #{id} Q: #{question} A: #{answer}"
   end
 end
+
+# looks good, what is the to_s method doing for you?
